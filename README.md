@@ -1,2 +1,1 @@
-# Unit6
-Repository for UNIT-VI at Masai School
+Revision of the MERN Stack right from the basics
