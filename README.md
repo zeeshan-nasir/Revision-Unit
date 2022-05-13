@@ -1,1 +1,1 @@
-Revision of the MERN Stack right from the basics
+Revision of the MERN Stack right from the basics.
