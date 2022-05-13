@@ -1,2 +1,2 @@
 # Unit6
-Repository for UNIT-III at Masai School
+Repository for UNIT-VI at Masai School
