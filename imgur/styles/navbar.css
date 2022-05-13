@@ -150,6 +150,8 @@ body {
     padding: 10px;
 }
 
+/* Explore Div */
+
 .explore {
     width: 85%;
     margin: auto;
@@ -169,7 +171,6 @@ body {
     margin-top: 15px;
 }
 
-/* Explore Div */
 
 .backBig {
     flex: 2;
@@ -180,6 +181,11 @@ body {
     justify-content: end;
 }
 
+.backBig:hover {
+    transform: translateY(-5px);
+    transition: .2s;
+}
+
 .back1 {
     flex: 1;
     height: 100%;
@@ -187,6 +193,11 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: end;
+}
+
+.back1:hover {
+    transform: translateY(-5px);
+    transition: .2s;
 }
 
 .tagsDataDiv {
