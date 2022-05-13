@@ -1,12 +1,21 @@
-const getData = () => {
-    fetch(
-        "https://api.unsplash.com/photos/?client_id=OhvuwOiZ4Oo-JLYknTjGZwcskETxYsUlH_9s_I6x8c4&per_page=30"
-    )
-        .then((res) => res.json())
-        .then((data) => addData(data));
+// Fetch main data
+
+const getData = async () => {
+    try {
+        let fetched = await fetch(
+            "https://api.unsplash.com/photos/?client_id=OhvuwOiZ4Oo-JLYknTjGZwcskETxYsUlH_9s_I6x8c4&per_page=30"
+        );
+        let data = await fetched.json();
+        // console.log("data:", data);
+        addData(data);
+    } catch (err) {
+        console.log("err:", err);
+    }
 };
 
 getData();
+
+// Append data
 
 const parent = document.getElementById("images");
 
@@ -69,9 +78,13 @@ function addData(data) {
     });
 }
 
-function getRandomNumber(min, max) {
+// Get random number
+
+const getRandomNumber = (min, max) => {
     return Math.round(Math.random() * (max - min) + min);
-}
+};
+
+// Add debouncing to search
 
 let deb;
 
@@ -85,16 +98,18 @@ document.querySelector(".navSearch").addEventListener("input", () => {
     }, 1000);
 });
 
-function searchData() {
+const searchData = async () => {
     let query = document.querySelector(".navSearch").value;
-    console.log("query:", query);
+    // console.log("query:", query);
 
-    fetch(
-        `https://api.unsplash.com/search/photos?page=1&query=${query}&client_id=OhvuwOiZ4Oo-JLYknTjGZwcskETxYsUlH_9s_I6x8c4`
-    )
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data);
-            addData(data.results);
-        });
-}
+    try {
+        let fetched = await fetch(
+            `https://api.unsplash.com/search/photos?page=1&query=${query}&client_id=OhvuwOiZ4Oo-JLYknTjGZwcskETxYsUlH_9s_I6x8c4`
+        );
+        let data = await fetched.json();
+        // console.log("data:", data);
+        addData(data.results);
+    } catch (err) {
+        console.log("err:", err);
+    }
+};
