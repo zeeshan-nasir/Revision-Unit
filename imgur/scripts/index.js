@@ -11,6 +11,8 @@ getData();
 const parent = document.getElementById("images");
 
 function addData(data) {
+    document.querySelector("#images").innerHTML = "";
+
     data.map((e) => {
         const card = document.createElement("div");
         card.id = "card";
@@ -45,7 +47,7 @@ function addData(data) {
         comments.id = "arrow";
 
         const commentsNum = document.createElement("p");
-        commentsNum.textContent = getRandomArbitrary(20, 120);
+        commentsNum.textContent = getRandomNumber(20, 120);
 
         const viewsDiv = document.createElement("div");
         viewsDiv.id = "divLast";
@@ -55,7 +57,7 @@ function addData(data) {
         views.id = "views";
 
         const viewsNum = document.createElement("p");
-        viewsNum.textContent = getRandomArbitrary(1, 11) + "k";
+        viewsNum.textContent = getRandomNumber(1, 11) + "k";
 
         upvoteDiv.append(arrow, upvoteNum);
         commentDiv.append(comments, commentsNum);
@@ -67,6 +69,32 @@ function addData(data) {
     });
 }
 
-function getRandomArbitrary(min, max) {
+function getRandomNumber(min, max) {
     return Math.round(Math.random() * (max - min) + min);
+}
+
+let deb;
+
+document.querySelector(".navSearch").addEventListener("input", () => {
+    if (deb) {
+        clearTimeout(deb);
+    }
+
+    deb = setTimeout(() => {
+        searchData();
+    }, 1000);
+});
+
+function searchData() {
+    let query = document.querySelector(".navSearch").value;
+    console.log("query:", query);
+
+    fetch(
+        `https://api.unsplash.com/search/photos?page=1&query=${query}&client_id=OhvuwOiZ4Oo-JLYknTjGZwcskETxYsUlH_9s_I6x8c4`
+    )
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            addData(data.results);
+        });
 }
