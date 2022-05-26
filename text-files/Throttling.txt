@@ -1,0 +1,22 @@
+Throttling a button:
+
+	  const btn = document.querySelector("#throttle");
+
+        const throttler = (func, delay) => {
+            let prev = 0;
+
+            return () => {
+                let now = new Date().getTime();
+
+                console.log(now - prev, delay);
+
+                if (now - prev > delay) {
+                    prev = now;
+                    return func();
+                }
+            }
+        }
+
+        btn.addEventListener("click", throttler(() => {
+            console.log("button is clicked")
+        }, 1500));

@@ -1,0 +1,13 @@
+// Function to implement search bar debouncing
+
+let debouce;
+
+document.querySelector(".search").addEventListener("input", () => {
+    if (debouce) {
+        clearInterval(id);
+    }
+
+    const id = setInterval(() => {
+        getData();                          // async function to seach for query
+    }, 1000);
+});
