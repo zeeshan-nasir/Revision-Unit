@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const tweetSchema = new mongoose.Schema({
-    tweet_id: { type: String, required: true },
     tweet_content: { type: String, required: true },
     user_id: {
         type: mongoose.Schema.Types.ObjectId,

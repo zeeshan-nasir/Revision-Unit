@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const relationshipSchema = new mongoose.Schema({
-    relationship_id: { type: String, required: true },
     follower_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",
