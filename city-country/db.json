@@ -1,0 +1,36 @@
+{
+    "countries": [
+        {
+            "id": 1,
+            "name": "India"
+        },
+        {
+            "id": 2,
+            "name": "SriLanka"
+        },
+        {
+            "id": 3,
+            "name": "USA"
+        }
+    ],
+    "cities": [
+        {
+            "id": 1,
+            "country": "India",
+            "city": "Delhi",
+            "population": "19,000,000"
+        },
+        {
+            "id": 2,
+            "country": "SriLanka",
+            "city": "Colombo",
+            "population": "5,600,000"
+        },
+        {
+            "id": 3,
+            "country": "USA",
+            "city": "Chicago",
+            "population": "2,920,000"
+        }
+    ]
+}
