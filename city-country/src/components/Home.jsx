@@ -6,18 +6,20 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Button, MenuItem, Select } from "@mui/material";
+import { Button } from "@mui/material";
 
 const Home = () => {
     const [data, setData] = useState([]);
     const [country, setCountry] = useState([]);
+    const [filter, setFilter] = useState([]);
 
     useEffect(() => {
         const getData = async () => {
             let fetched = await fetch("http://localhost:3000/cities");
             fetched = await fetched.json();
-            console.log(fetched);
+            // console.log(fetched);
             setData(fetched);
+            setFilter(fetched);
         };
 
         getData();
@@ -27,12 +29,45 @@ const Home = () => {
         const getCountry = async () => {
             let fetched = await fetch("http://localhost:3000/countries");
             fetched = await fetched.json();
-            console.log(fetched);
+            // console.log(fetched);
             setCountry(fetched);
         };
 
         getCountry();
     }, []);
+
+    const handleChange = (e) => {
+        const { value } = e.target;
+        setFilter(
+            data.filter((e) => {
+                return e.country === value;
+            })
+        );
+    };
+
+    const handleSort = (e) => {
+        const { value } = e.target;
+        console.log(value);
+        if (value === "lth") {
+            setFilter([
+                ...data.sort((a, b) => {
+                    return (
+                        +a.population.split(",").join("") -
+                        +b.population.split(",").join("")
+                    );
+                }),
+            ]);
+        } else {
+            setFilter([
+                ...data.sort((a, b) => {
+                    return (
+                        +b.population.split(",").join("") -
+                        +a.population.split(",").join("")
+                    );
+                }),
+            ]);
+        }
+    };
 
     return (
         <TableContainer
@@ -40,22 +75,49 @@ const Home = () => {
             component={Paper}
         >
             <h1>COUNTRY DETAILS</h1>
-            <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                sx={{ marginBottom: "20px" }}
-                label="Select Country"
-                // value={age}
-                // onChange={handleChange}
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "space-evenly",
+                    marginBottom: "20px",
+                }}
             >
-                {country.map((e) => {
-                    return (
-                        <MenuItem key={e.name} value={10}>
-                            {e.name}
-                        </MenuItem>
-                    );
-                })}
-            </Select>
+                <div>
+                    <label htmlFor="">Filter by country:</label>
+                    <select
+                        style={{
+                            height: "30px",
+                            borderRadius: "10px",
+                            marginLeft: "20px",
+                        }}
+                        onChange={handleChange}
+                    >
+                        <option value="">- - - - - - - - -</option>
+                        {country.map((e) => {
+                            return (
+                                <option key={e.id} value={e.name}>
+                                    {e.name}
+                                </option>
+                            );
+                        })}
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor="">Sort by population:</label>
+                    <select
+                        style={{
+                            height: "30px",
+                            borderRadius: "10px",
+                            marginLeft: "20px",
+                        }}
+                        onChange={handleSort}
+                    >
+                        <option value="">- - - - - - - - -</option>
+                        <option value="lth">Low to High</option>
+                        <option value="htl">High to Low</option>
+                    </select>
+                </div>
+            </div>
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
@@ -68,7 +130,7 @@ const Home = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {data.map((e) => (
+                    {filter.map((e) => (
                         <TableRow
                             key={e.id}
                             sx={{

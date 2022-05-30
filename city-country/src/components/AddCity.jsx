@@ -9,6 +9,11 @@ import {
 
 const AddCity = () => {
     const [data, setData] = useState([]);
+    const [formData, setFormData] = useState({
+        city: "",
+        country: "",
+        population: "",
+    });
 
     useEffect(() => {
         const getData = async () => {
@@ -21,6 +26,22 @@ const AddCity = () => {
         getData();
     }, []);
 
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        fetch("http://localhost:8080/cities", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        });
+    };
+
     return (
         <FormControl>
             <h1>Add City Data</h1>
@@ -29,20 +50,24 @@ const AddCity = () => {
                 label="Enter City Name"
                 variant="outlined"
                 sx={{ marginBottom: "20px" }}
+                name="city"
+                onChange={handleChange}
             />
             <TextField
                 id="outlined-basic"
                 label="Enter Population"
                 variant="outlined"
                 sx={{ marginBottom: "20px" }}
+                name="population"
+                onChange={handleChange}
             />
             <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 sx={{ marginBottom: "20px" }}
                 label="Select Country"
-                // value={age}
-                // onChange={handleChange}
+                onChange={handleChange}
+                name="country"
             >
                 {data.map((e) => {
                     return (
@@ -52,7 +77,11 @@ const AddCity = () => {
                     );
                 })}
             </Select>
-            <Button sx={{ height: "50px" }} variant="contained">
+            <Button
+                onClick={handleSubmit}
+                sx={{ height: "50px" }}
+                variant="contained"
+            >
                 Add
             </Button>
         </FormControl>
