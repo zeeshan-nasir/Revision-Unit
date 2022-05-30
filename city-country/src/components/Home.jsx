@@ -15,7 +15,7 @@ const Home = () => {
 
     useEffect(() => {
         const getData = async () => {
-            let fetched = await fetch("http://localhost:3000/cities");
+            let fetched = await fetch("http://localhost:8080/cities");
             fetched = await fetched.json();
             // console.log(fetched);
             setData(fetched);
@@ -27,7 +27,7 @@ const Home = () => {
 
     useEffect(() => {
         const getCountry = async () => {
-            let fetched = await fetch("http://localhost:3000/countries");
+            let fetched = await fetch("http://localhost:8080/countries");
             fetched = await fetched.json();
             // console.log(fetched);
             setCountry(fetched);

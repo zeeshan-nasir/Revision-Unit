@@ -11,7 +11,7 @@ const AddCity = () => {
 
     useEffect(() => {
         const getData = async () => {
-            let fetched = await fetch("http://localhost:3000/countries");
+            let fetched = await fetch("http://localhost:8080/countries");
             fetched = await fetched.json();
             console.log(fetched);
             setData(fetched);
@@ -29,7 +29,7 @@ const AddCity = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch("http://localhost:3000/cities", {
+        fetch("http://localhost:8080/cities", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

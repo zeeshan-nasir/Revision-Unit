@@ -12,7 +12,7 @@ const AddCountry = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        fetch("http://localhost:3000/countries", {
+        fetch("http://localhost:8080/countries", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
