@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-    Button,
-    FormControl,
-    MenuItem,
-    Select,
-    TextField,
-} from "@mui/material";
+import { Button, FormControl, TextField } from "@mui/material";
 
 const AddCity = () => {
     const [data, setData] = useState([]);
@@ -27,13 +21,15 @@ const AddCity = () => {
     }, []);
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { id, value } = e.target;
+
+        setFormData({ ...formData, [id]: value });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch("http://localhost:8080/cities", {
+        fetch("http://localhost:3000/cities", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -46,37 +42,41 @@ const AddCity = () => {
         <FormControl>
             <h1>Add City Data</h1>
             <TextField
-                id="outlined-basic"
                 label="Enter City Name"
                 variant="outlined"
                 sx={{ marginBottom: "20px" }}
-                name="city"
+                id="city"
                 onChange={handleChange}
             />
             <TextField
-                id="outlined-basic"
                 label="Enter Population"
                 variant="outlined"
                 sx={{ marginBottom: "20px" }}
-                name="population"
+                id="population"
                 onChange={handleChange}
             />
-            <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                sx={{ marginBottom: "20px" }}
-                label="Select Country"
+            <select
+                style={{
+                    height: "55px",
+                    borderRadius: "3px",
+                    fontSize: "17px",
+                    color: "grey",
+                    paddingLeft: "10px",
+                    marginBottom: "30px",
+                }}
+                id="country"
                 onChange={handleChange}
-                name="country"
             >
+                <option value="">Select Country</option>
                 {data.map((e) => {
                     return (
-                        <MenuItem key={e.name} value={10}>
+                        <option key={e.id} value={e.name}>
                             {e.name}
-                        </MenuItem>
+                        </option>
                     );
                 })}
-            </Select>
+            </select>
+
             <Button
                 onClick={handleSubmit}
                 sx={{ height: "50px" }}

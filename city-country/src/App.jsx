@@ -3,12 +3,12 @@ import "./App.css";
 import AddCity from "./components/AddCity";
 import AddCountry from "./components/AddCountry";
 import Home from "./components/Home";
-// import Navbar from "./components/Navbar"
+import Navbar from "./components/Navbar";
 
 function App() {
     return (
         <div className="App">
-            {/* <Navbar /> */}
+            <Navbar />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/add-country" element={<AddCountry />} />

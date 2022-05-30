@@ -3,14 +3,16 @@ import React, { useState } from "react";
 
 const AddCountry = () => {
     const [country, setCountry] = useState("");
+
     const handleChange = (e) => {
-        setCountry({ ...country, [e.target.name]: e.target.value });
+        const { id, value } = e.target;
+        setCountry({ ...country, [id]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        fetch("http://localhost:8080/cities", {
+        fetch("http://localhost:3000/countries", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -23,11 +25,10 @@ const AddCountry = () => {
         <div>
             <h1>Add Country</h1>
             <TextField
-                id="outlined-basic"
+                id="name"
                 label="Enter Country Name"
                 variant="outlined"
                 sx={{ marginRight: "20px" }}
-                name="countryName"
                 onChange={handleChange}
             />
             <Button

@@ -6,31 +6,41 @@
         },
         {
             "id": 2,
-            "name": "SriLanka"
+            "name": "Canada"
         },
         {
             "id": 3,
             "name": "USA"
+        },
+        {
+            "name": "China",
+            "id": 4
         }
     ],
     "cities": [
         {
             "id": 1,
             "country": "India",
-            "city": "Delhi",
+            "city": "Mumbai",
             "population": "19,000,000"
         },
         {
             "id": 2,
-            "country": "SriLanka",
+            "country": "Canada",
             "city": "Colombo",
             "population": "5,600,000"
         },
         {
             "id": 3,
             "country": "USA",
-            "city": "Chicago",
+            "city": "Las Angeles",
             "population": "2,920,000"
+        },
+        {
+            "city": "Shangai",
+            "country": "China",
+            "population": "21,233,000",
+            "id": 4
         }
     ]
 }
