@@ -1,46 +1,48 @@
 {
-    "countries": [
-        {
-            "id": 1,
-            "name": "India"
-        },
-        {
-            "id": 2,
-            "name": "Canada"
-        },
-        {
-            "id": 3,
-            "name": "USA"
-        },
-        {
-            "name": "China",
-            "id": 4
-        }
-    ],
-    "cities": [
-        {
-            "id": 1,
-            "country": "India",
-            "city": "Mumbai",
-            "population": "19,000,000"
-        },
-        {
-            "id": 2,
-            "country": "Canada",
-            "city": "Colombo",
-            "population": "5,600,000"
-        },
-        {
-            "id": 3,
-            "country": "USA",
-            "city": "Las Angeles",
-            "population": "2,920,000"
-        },
-        {
-            "city": "Shangai",
-            "country": "China",
-            "population": "21,233,000",
-            "id": 4
-        }
-    ]
+  "countries": [
+    {
+      "id": 1,
+      "name": "India"
+    },
+    {
+      "id": 2,
+      "name": "Canada"
+    },
+    {
+      "id": 3,
+      "name": "USA"
+    },
+    {
+      "name": "China",
+      "id": 4
+    },
+    {
+      "name": "England",
+      "id": 5
+    },
+    {
+      "name": "Australia",
+      "id": 6
+    }
+  ],
+  "cities": [
+    {
+      "id": 1,
+      "country": "India",
+      "city": "Mumbai",
+      "population": "19,000,000"
+    },
+    {
+      "id": 2,
+      "country": "Canada",
+      "city": "Ontario",
+      "population": "5,600,000"
+    },
+    {
+      "city": "London",
+      "country": "England",
+      "population": "3,456,000",
+      "id": 5
+    }
+  ]
 }

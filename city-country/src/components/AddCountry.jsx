@@ -1,8 +1,11 @@
 import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addCountry } from "../redux/action";
 
 const AddCountry = () => {
     const [country, setCountry] = useState("");
+    const dispatch = useDispatch();
 
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -12,13 +15,7 @@ const AddCountry = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        fetch("http://localhost:8080/countries", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(country),
-        });
+        dispatch(addCountry(country));
     };
 
     return (

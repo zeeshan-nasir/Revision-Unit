@@ -1,11 +1,8 @@
-import { legacy_createStore } from "redux";
+import { applyMiddleware, legacy_createStore } from "redux";
 import { reducer } from "./reducer";
+import thunk from "redux-thunk";
 
-const initState = {
-    cities: [],
-};
-
-export const store = legacy_createStore(reducer, initState);
+export const store = legacy_createStore(reducer, applyMiddleware(thunk));
 
 store.subscribe(() => {
     console.log(store.getState());

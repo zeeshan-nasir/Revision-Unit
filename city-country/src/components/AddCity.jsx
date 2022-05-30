@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, FormControl, TextField } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { addCity } from "../redux/action";
 
 const AddCity = () => {
     const [data, setData] = useState([]);
@@ -8,6 +10,8 @@ const AddCity = () => {
         country: "",
         population: "",
     });
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const getData = async () => {
@@ -29,13 +33,7 @@ const AddCity = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch("http://localhost:8080/cities", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(formData),
-        });
+        dispatch(addCity(formData));
     };
 
     return (

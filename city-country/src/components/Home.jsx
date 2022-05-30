@@ -7,11 +7,15 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { deleteCity } from "../redux/action";
 
 const Home = () => {
     const [data, setData] = useState([]);
     const [country, setCountry] = useState([]);
     const [filter, setFilter] = useState([]);
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const getData = async () => {
@@ -67,6 +71,10 @@ const Home = () => {
                 }),
             ]);
         }
+    };
+
+    const handleDelete = (data) => {
+        dispatch(deleteCity(data));
     };
 
     return (
@@ -149,7 +157,12 @@ const Home = () => {
                                 <Button variant="outlined">Edit</Button>
                             </TableCell>
                             <TableCell align="center">
-                                <Button variant="outlined">Delete</Button>
+                                <Button
+                                    variant="outlined"
+                                    onClick={() => handleDelete(e)}
+                                >
+                                    Delete
+                                </Button>
                             </TableCell>
                         </TableRow>
                     ))}
