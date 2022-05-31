@@ -1,4 +1,4 @@
-import { SET_CITY, SET_COUNTRY } from "./action";
+import { FETCH_CITY, FETCH_COUNTRY, SET_CITY, SET_COUNTRY } from "./action";
 
 const init = {
     countries: [],
@@ -14,6 +14,16 @@ export const reducer = (state = init, action) => {
             };
         case SET_CITY:
             return { ...state, cities: [...state.cities, action.payload] };
+        case FETCH_COUNTRY:
+            return {
+                ...state,
+                countries: [...action.payload],
+            };
+        case FETCH_CITY:
+            return {
+                ...state,
+                cities: [...action.payload],
+            };
         default:
             return state;
     }

@@ -7,38 +7,42 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { deleteCity } from "../redux/action";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteCity, fetchCity, fetchCountry } from "../redux/action";
 
 const Home = () => {
-    const [data, setData] = useState([]);
-    const [country, setCountry] = useState([]);
-    const [filter, setFilter] = useState([]);
+    // const [data] = useState();
+    // const [country, setCountry] = useState([]);
 
     const dispatch = useDispatch();
+    const country = useSelector((store) => store.countries);
+    const data = useSelector((store) => store.cities);
+    const [filter, setFilter] = useState(null);
+    // console.log(data);
 
     useEffect(() => {
-        const getData = async () => {
-            let fetched = await fetch("http://localhost:8080/cities");
-            fetched = await fetched.json();
-            // console.log(fetched);
-            setData(fetched);
-            setFilter(fetched);
-        };
+        // const getData = async () => {
+        //     let fetched = await fetch("http://localhost:8080/cities");
+        //     fetched = await fetched.json();
+        //     // console.log(fetched);
+        //     setData(fetched);
+        //     setFilter(fetched);
+        // };
+        // getData();
 
-        getData();
+        dispatch(fetchCity());
+        dispatch(fetchCountry());
     }, []);
 
-    useEffect(() => {
-        const getCountry = async () => {
-            let fetched = await fetch("http://localhost:8080/countries");
-            fetched = await fetched.json();
-            // console.log(fetched);
-            setCountry(fetched);
-        };
-
-        getCountry();
-    }, []);
+    // useEffect(() => {
+    // const getCountry = async () => {
+    //     let fetched = await fetch("http://localhost:8080/countries");
+    //     fetched = await fetched.json();
+    //     // console.log(fetched);
+    //     setCountry(fetched);
+    // };
+    // getCountry();
+    // }, []);
 
     const handleChange = (e) => {
         const { value } = e.target;
@@ -51,7 +55,7 @@ const Home = () => {
 
     const handleSort = (e) => {
         const { value } = e.target;
-        console.log(value);
+        // console.log(value);
         if (value === "lth") {
             setFilter([
                 ...data.sort((a, b) => {
@@ -138,7 +142,7 @@ const Home = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {filter.map((e) => (
+                    {(filter || data).map((e) => (
                         <TableRow
                             key={e.id}
                             sx={{
