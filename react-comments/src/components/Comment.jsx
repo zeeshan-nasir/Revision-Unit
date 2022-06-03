@@ -12,7 +12,7 @@ const Comment = ({ data }) => {
                             className="btn"
                             onClick={() => setExpand(!expand)}
                         >
-                            +
+                            {expand ? "-" : "+"}
                         </button>
                     </div>
                     <div className="upperDiv">
