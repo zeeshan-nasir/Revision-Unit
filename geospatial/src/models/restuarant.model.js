@@ -5,11 +5,9 @@ const restaurantSchema = new mongoose.Schema({
         type: {
             type: String,
             enum: ["Point"],
-            index: "2dsphere",
         },
         coordinates: {
             type: [Number],
-            index: "2dsphere",
         },
     },
     name: { type: String },
