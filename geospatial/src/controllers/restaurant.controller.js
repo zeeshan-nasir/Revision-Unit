@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Restaurant = require("../models/restuarant.model");
 
-const lat = 32.732998;
-const long = 74.864273;
+const lat = -73.856077;
+const long = 40.848447;
 
 router.get("/nearme", async (req, res) => {
     try {
