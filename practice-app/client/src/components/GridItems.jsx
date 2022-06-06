@@ -3,9 +3,9 @@ import { Card, Button } from "react-bootstrap";
 const GridItems = ({ data }) => {
     return (
         <div className="cards-div">
-            {data.map((e) => {
+            {data.map((e, i) => {
                 return (
-                    <Card key={e.id} style={{ width: "18rem" }}>
+                    <Card key={i} style={{ width: "18rem" }}>
                         <Card.Img variant="top" src={e.img_url} />
                         <Card.Body>
                             <Card.Title style={{ minHeight: "50px" }}>

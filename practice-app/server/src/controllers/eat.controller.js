@@ -7,10 +7,29 @@ router.get("", async (req, res) => {
     try {
         const page = req.query.page || 1;
         const pagesize = req.query.pagesize || 12;
-
         const skip = (page - 1) * pagesize;
+        const filter = req.query.filter || "";
 
-        const eat = await Eat.find().skip(skip).limit(pagesize).lean().exec();
+        // console.log(req.query);
+
+        const sortType =
+            req.query.sort === "lth" ? { price: 1 } : { price: -1 } || "";
+
+        if (filter) {
+            var eat = await Eat.find({ variety: filter })
+                .sort(sortType)
+                .skip(skip)
+                .limit(pagesize)
+                .lean()
+                .exec();
+        } else {
+            var eat = await Eat.find()
+                .sort(sortType)
+                .skip(skip)
+                .limit(pagesize)
+                .lean()
+                .exec();
+        }
 
         const totalPages = Math.ceil(
             (await Eat.find().countDocuments()) / pagesize
