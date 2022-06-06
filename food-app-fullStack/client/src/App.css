@@ -1,0 +1,45 @@
+.App {
+  width: 100%;
+}
+
+.cards-div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 90%;
+  margin: auto;
+  padding: 50px;
+  grid-gap: 30px;
+}
+
+.price-div {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0px;
+}
+
+.small-text {
+  font-size: 13px;
+  color: grey;
+  text-decoration: line-through;
+}
+
+.btn-div {
+  margin-top: -10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sort-filter-parent-div {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  gap: 100px;
+}
+
+.sorting-div,
+.filtering-div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
