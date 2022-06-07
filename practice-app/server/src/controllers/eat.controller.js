@@ -22,6 +22,8 @@ router.get("", async (req, res) => {
                 .limit(pagesize)
                 .lean()
                 .exec();
+
+            var totalPages = Math.ceil((await eat.length) / pagesize);
         } else {
             var eat = await Eat.find()
                 .sort(sortType)
@@ -29,11 +31,11 @@ router.get("", async (req, res) => {
                 .limit(pagesize)
                 .lean()
                 .exec();
-        }
 
-        const totalPages = Math.ceil(
-            (await Eat.find().countDocuments()) / pagesize
-        );
+            var totalPages = Math.ceil(
+                (await Eat.find().countDocuments()) / pagesize
+            );
+        }
 
         return res.status(200).send({ eat, totalPages });
     } catch (err) {
