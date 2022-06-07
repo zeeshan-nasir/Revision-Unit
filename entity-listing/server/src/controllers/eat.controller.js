@@ -23,7 +23,7 @@ router.get("", async (req, res) => {
                 .lean()
                 .exec();
 
-            var totalPages = Math.ceil((await eat.length) / pagesize);
+            var totalPages = Math.ceil(eat.length / pagesize);
         } else {
             var eat = await Eat.find()
                 .sort(sortType)
