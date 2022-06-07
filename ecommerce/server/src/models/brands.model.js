@@ -2,7 +2,14 @@ const mongoose = require("mongoose");
 
 const brandsModel = new mongoose.Schema(
     {
-        brands: [{ type: String, required: true }],
+        name: { type: String, required: true },
+        product_id: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "product",
+                required: true,
+            },
+        ],
     },
     {
         versionKey: false,
