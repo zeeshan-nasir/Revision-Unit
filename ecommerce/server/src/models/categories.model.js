@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
 
-const categoriesModel = new mongoose.Schema(
+const categorySchema = new mongoose.Schema(
     {
-        ancestors: [{ type: String, required: true }],
-        parent_id: { type: Number, required: true },
+        name: { type: String, required: true },
+        description: { type: String, required: true },
+        image: { type: String, required: true },
+        products: [{ type: mongoose.Schema.Types.ObjectId, ref: "product" }],
     },
     {
         versionKey: false,
@@ -11,4 +13,4 @@ const categoriesModel = new mongoose.Schema(
     }
 );
 
-module.exports = mongoose.model("category", categoriesModel);
+module.exports = mongoose.model("category", categorySchema);

@@ -1,8 +1,29 @@
 const mongoose = require("mongoose");
 
-const userModel = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
     {
-        address: [{ type: String, required: true }],
+        firstName: {
+            type: String,
+            required: true,
+        },
+        lastName: {
+            type: String,
+            required: true,
+        },
+        username: {
+            type: String,
+            unique: true,
+            required: true,
+        },
+        email: {
+            type: String,
+            unique: true,
+            required: true,
+        },
+        password: { type: String, required: true },
+        addresses: [{ type: mongoose.Schema.Types.ObjectId, ref: "address" }],
+        reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "review" }],
+        orders: [{ type: mongoose.Schema.Types.ObjectId, ref: "order" }],
     },
     {
         versionKey: false,
@@ -10,4 +31,4 @@ const userModel = new mongoose.Schema(
     }
 );
 
-module.exports = mongoose.model("user", userModel);
+module.exports = mongoose.model("user", userSchema);

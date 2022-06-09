@@ -2,16 +2,9 @@ const mongoose = require("mongoose");
 
 const ordersSchema = new mongoose.Schema(
     {
-        user_id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "user",
-            required: true,
-        },
-        product_id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "product",
-            required: true,
-        },
+        user: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
+        address: { type: mongoose.Schema.Types.ObjectId, ref: "address" },
+        products: [{ type: mongoose.Schema.Types.ObjectId, ref: "product" }],
     },
     {
         versionKey: false,

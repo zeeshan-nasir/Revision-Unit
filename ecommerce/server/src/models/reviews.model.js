@@ -1,17 +1,10 @@
 const mongoose = require("mongoose");
 
-const reviewsModel = new mongoose.Schema(
+const reviewsSchema = new mongoose.Schema(
     {
-        product_id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "product",
-            required: true,
-        },
-        user_id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "user",
-            required: true,
-        },
+        review_text: { type: String, required: true },
+        user: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
+        product: { type: mongoose.Schema.Types.ObjectId, ref: "product" },
     },
     {
         versionKey: false,
@@ -19,4 +12,4 @@ const reviewsModel = new mongoose.Schema(
     }
 );
 
-module.exports = mongoose.model("review", reviewsModel);
+module.exports = mongoose.model("review", reviewsSchema);

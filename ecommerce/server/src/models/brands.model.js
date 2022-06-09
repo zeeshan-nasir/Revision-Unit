@@ -1,15 +1,16 @@
 const mongoose = require("mongoose");
 
-const brandsModel = new mongoose.Schema(
+const brandsSchema = new mongoose.Schema(
     {
         name: { type: String, required: true },
-        product_id: [
+        logo: { type: String, required: true },
+        products: [
             {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "product",
-                required: true,
             },
         ],
+        catogories: { type: mongoose.Schema.Types.ObjectId, ref: "category" },
     },
     {
         versionKey: false,
@@ -17,4 +18,4 @@ const brandsModel = new mongoose.Schema(
     }
 );
 
-module.exports = mongoose.model("brand", brandsModel);
+module.exports = mongoose.model("brand", brandsSchema);
