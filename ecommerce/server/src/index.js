@@ -6,11 +6,13 @@ app.use(express.json());
 app.use(cors());
 
 const userController = require("./controllers/user.controller");
-const brandsController = require("./controllers/brands.controller");
-const productsController = require("./controllers/products.controller");
+const brandsController = require("./controllers/brand.controller");
+const productsController = require("./controllers/product.controller");
+const categoryController = require("./controllers/category.controller");
 
-app.use("/users", userController);
-app.use("/brands", brandsController);
-app.use("/products", productsController);
+app.use("/user", userController);
+app.use("/brand", brandsController);
+app.use("/product", productsController);
+app.use("/category", categoryController);
 
 module.exports = app;

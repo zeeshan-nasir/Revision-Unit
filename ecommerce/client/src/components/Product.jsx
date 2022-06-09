@@ -20,7 +20,7 @@ const Product = () => {
                 <Form.Control type="text" />
             </Form.Group>
             <Form.Group style={{ fontSize: "18px" }} className="mb-3">
-                <Form.Label>Product Brand</Form.Label>
+                <Form.Label>Product Price</Form.Label>
                 <Form.Control type="text" />
             </Form.Group>
             <Form.Group style={{ fontSize: "18px" }} className="mb-3">

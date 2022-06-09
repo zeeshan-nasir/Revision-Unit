@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 
-const User = () => {
+const Category = () => {
     return (
         <Form
             className="mt-5 p-5"
@@ -12,15 +12,11 @@ const User = () => {
             }}
         >
             <Form.Group style={{ fontSize: "18px" }} className="mb-3">
-                <Form.Label>Full Name</Form.Label>
+                <Form.Label>Category Name</Form.Label>
                 <Form.Control type="text" />
             </Form.Group>
             <Form.Group style={{ fontSize: "18px" }} className="mb-3">
-                <Form.Label>Phone Number</Form.Label>
-                <Form.Control type="text" />
-            </Form.Group>
-            <Form.Group style={{ fontSize: "18px" }} className="mb-3">
-                <Form.Label>Address</Form.Label>
+                <Form.Label>Category Description</Form.Label>
                 <Form.Control type="text" />
             </Form.Group>
             <Button className="mt-3" variant="dark">
@@ -30,4 +26,4 @@ const User = () => {
     );
 };
 
-export default User;
+export default Category;

@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
-const categorySchema = new mongoose.Schema(
+const brandsSchema = new mongoose.Schema(
     {
         name: { type: String, required: true },
-        description: { type: String, required: true },
-        image: { type: String, required: true },
+        logo: { type: String, required: true },
         products: [{ type: mongoose.Schema.Types.ObjectId, ref: "product" }],
+        categories: [{ type: mongoose.Schema.Types.ObjectId, ref: "category" }],
     },
     {
         versionKey: false,
@@ -13,4 +13,4 @@ const categorySchema = new mongoose.Schema(
     }
 );
 
-module.exports = mongoose.model("category", categorySchema);
+module.exports = mongoose.model("brand", brandsSchema);

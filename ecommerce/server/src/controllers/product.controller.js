@@ -1,10 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const Product = require("../models/products.model");
+const Product = require("../models/product.model");
 
 router.get("", async (req, res) => {
     try {
-        const product = await Product.find().lean().exec();
+        const product = await Product.find()
+            .populate({
+                path: "review",
+            })
+            .populate({
+                path: "category",
+            })
+            .populate({
+                path: "brand",
+            })
+            .lean()
+            .exec();
         return res.status(200).send(product);
     } catch (err) {
         return res.status(400).send(err);
@@ -31,10 +42,16 @@ router.get("/:id", async (req, res) => {
 
 router.patch("/:id/edit", async (req, res) => {
     try {
-        const product = await Product.findByIdAndUpdate(
-            req.params.id,
-            req.body
-        );
+        const product = await Product.findByIdAndUpdate(req.params.id, req.body)
+            .populate({
+                path: "review",
+            })
+            .populate({
+                path: "category",
+            })
+            .populate({
+                path: "brand",
+            });
         return res.status(200).send(product);
     } catch (err) {
         return res.status(400).send(err);

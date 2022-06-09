@@ -1,13 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const Brand = require("../models/brands.model");
+const Brand = require("../models/brand.model");
 
 router.get("", async (req, res) => {
     try {
         const brand = await Brand.find()
-            // .populate({
-            //     path: "product",
-            // })
+            .populate({
+                path: "product",
+            })
+            .populate({
+                path: "category",
+            })
             .lean()
             .exec();
         return res.status(200).send(brand);
@@ -16,13 +19,14 @@ router.get("", async (req, res) => {
     }
 });
 
-router.post("/create", async (req, res) => {    
+router.post("/create", async (req, res) => {
     try {
         const brand = await Brand.create(req.body);
         return res.status(200).send(brand);
     } catch (err) {
         return res.status(400).send(err);
     }
+    
 });
 
 router.get("/:id", async (req, res) => {
@@ -38,7 +42,13 @@ router.get("/:id", async (req, res) => {
 
 router.patch("/:id/edit", async (req, res) => {
     try {
-        const brand = await Brand.findByIdAndUpdate(req.params.id, req.body);
+        const brand = await Brand.findByIdAndUpdate(req.params.id, req.body)
+            .populate({
+                path: "product",
+            })
+            .populate({
+                path: "category",
+            });
         return res.status(200).send(brand);
     } catch (err) {
         return res.status(400).send(err);
