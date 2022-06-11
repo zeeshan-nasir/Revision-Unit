@@ -22,7 +22,7 @@ router.get("", async (req, res) => {
 router.post("/create", async (req, res) => {
     try {
         const user = await User.create(req.body);
-        console.log(user);
+        // console.log(user);
         return res.status(201).send(user);
     } catch (err) {
         return res.status(400).send(err.message);
@@ -38,6 +38,7 @@ router.get("/:id", async (req, res) => {
         // .populate({
         // path: "order",
         // });
+        // console.log(user);
         return res.status(200).send(user);
     } catch (err) {
         return res.status(400).send(err);
@@ -46,6 +47,7 @@ router.get("/:id", async (req, res) => {
 
 router.patch("/:id/edit", async (req, res) => {
     try {
+        // console.log(req.body);
         const user = await User.findByIdAndUpdate(req.params.id, req.body);
         // .populate({
         //     path: "review",
@@ -70,24 +72,32 @@ router.get("/:id/addresses", async (req, res) => {
 
 router.post("/:id/addresses/create", async (req, res) => {
     try {
-        const user = await User.findByIdAndUpdate(req.params.id, {
-            $push: { address: req.body.address },
-        });
+        const user = await User.updateOne(
+            { _id: req.params.id },
+            {
+                $push: { addresses: req.body },
+            }
+        );
+        // console.log(user);
         return res.status(200).send(user);
     } catch (err) {
         return res.status(400).send(err);
     }
 });
 
-router.patch("/:id/addresses/:idx/edit", async (req, res) => {
+router.delete("/:id/addresses/:idx/edit", async (req, res) => {
     try {
         let user = await User.findById(req.params.id);
-        let address = user.addresses;
-        let updated = address.splice(req.params.idx, 1);
-        user = await User.findByIdAndUpdate(req.params.id, {
-            address: updated,
-        });
+        var arrIndex = `addresses.${req.params.idx}`;
 
+        await User.updateOne(
+            { _id: req.params.id },
+            { $unset: { [arrIndex]: 1 } }
+        );
+        await User.updateOne(
+            { _id: req.params.id },
+            { $pull: { addresses: null } }
+        );
         return res.status(200).send(user);
     } catch (err) {
         return res.status(400).send(err);

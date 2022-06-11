@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 
-const User = () => {
+const UserEdit = () => {
     const [form, setForm] = useState({
         fullName: "",
         email: "",
     });
+
+    const { id } = useParams();
 
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -14,8 +17,8 @@ const User = () => {
 
     const handleClick = () => {
         console.log(form);
-        fetch("http://localhost:4000/user/create", {
-            method: "POST",
+        fetch(`http://localhost:4000/user/${id}/edit`, {
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -51,4 +54,4 @@ const User = () => {
     );
 };
 
-export default User;
+export default UserEdit;

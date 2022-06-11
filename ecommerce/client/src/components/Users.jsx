@@ -38,26 +38,26 @@ const Users = () => {
                     return (
                         <Card key={e._id} style={{ width: "18rem" }}>
                             <Card.Body
-                            // onClick={() => {
-                            // navigate(`/user/${e._id}`);
-                            // }}
+                                onClick={() => {
+                                    navigate(`/user/${e._id}`);
+                                }}
                             >
                                 <Card.Title>{e.fullName}</Card.Title>
                                 <Card.Text>{e.email}</Card.Text>
-                                {e.addresses.map((item, i) => {
-                                    return (
-                                        <div key={i}>
-                                            <p>
-                                                <b>Addresses:</b>
-                                            </p>
-                                            <Card.Text>
+                                <div>
+                                    <p>
+                                        <b>Addresses:</b>
+                                    </p>
+                                    {e.addresses?.map((item, i) => {
+                                        return (
+                                            <Card.Text key={i}>
                                                 {i + 1 + "."} {item.locality},{" "}
                                                 {item.city}, {item.state},
                                                 {item.pincode}{" "}
                                             </Card.Text>
-                                        </div>
-                                    );
-                                })}
+                                        );
+                                    })}
+                                </div>
                             </Card.Body>
                         </Card>
                     );
