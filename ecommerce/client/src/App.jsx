@@ -8,6 +8,7 @@ import Product from "./components/Product";
 import Brand from "./components/Brand";
 import Category from "./components/Category";
 import Users from "./components/Users";
+import User from "./components/User";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
             <Routes>
                 <Route path={"/"} element={<Home />}></Route>
                 <Route path={"/user"} element={<Users />}></Route>
+                <Route path={"/user/:id"} element={<User />}></Route>
                 <Route path={"/user/create"} element={<UserCreate />}></Route>
                 <Route path={"/product"} element={<Product />}></Route>
                 <Route path={"/brand"} element={<Brand />}></Route>

@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema(
                 locality: { type: String, required: true },
                 city: { type: String, required: true },
                 state: { type: String, required: true },
-                pincode: { type: String, required: true },
+                pincode: { type: Number, required: true },
             },
         ],
         reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "review" }],
