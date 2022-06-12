@@ -39,6 +39,18 @@ router.get("/:id", async (req, res) => {
         // path: "order",
         // });
         // console.log(user);
+
+        const total = User.aggregate([
+            {
+                $group: {
+                    total: {
+                        $sum: { $multiply: ["$price", "$quantity"] },
+                    },
+                    count: { $sum: 1 },
+                },
+            },
+        ]);
+        
         return res.status(200).send(user);
     } catch (err) {
         return res.status(400).send(err);

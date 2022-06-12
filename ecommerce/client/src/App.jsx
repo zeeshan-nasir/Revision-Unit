@@ -4,13 +4,13 @@ import { Routes, Route } from "react-router-dom";
 import NavbarComp from "./components/NavbarComp";
 import Home from "./components/Home";
 import UserCreate from "./components/UserCreate";
-import Product from "./components/Product";
-import Brand from "./components/Brand";
-import Category from "./components/Category";
 import Users from "./components/Users";
 import User from "./components/User";
 import UserEdit from "./components/UserEdit";
 import AddAddress from "./components/AddAddress";
+import Products from "./components/Products";
+import Brands from "./components/Brands";
+import Categories from "./components/Categories";
 
 function App() {
     return (
@@ -18,7 +18,7 @@ function App() {
             <NavbarComp />
             <Routes>
                 <Route path={"/"} element={<Home />}></Route>
-                <Route path={"/user"} element={<Users />}></Route>
+                <Route path={"/users"} element={<Users />}></Route>
                 <Route path={"/user/:id"} element={<User />}></Route>
                 <Route path={"/user/create"} element={<UserCreate />}></Route>
                 <Route path={"/user/:id/edit"} element={<UserEdit />}></Route>
@@ -26,9 +26,9 @@ function App() {
                     path={"/user/:id/addresses/create"}
                     element={<AddAddress />}
                 ></Route>
-                <Route path={"/product"} element={<Product />}></Route>
-                <Route path={"/brand"} element={<Brand />}></Route>
-                <Route path={"/category"} element={<Category />}></Route>
+                <Route path={"/products"} element={<Products />}></Route>
+                <Route path={"/brands"} element={<Brands />}></Route>
+                <Route path={"/categories"} element={<Categories />}></Route>
             </Routes>
         </div>
     );

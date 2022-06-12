@@ -7,10 +7,10 @@ const NavbarComp = () => {
             <Container>
                 <Navbar.Brand href="/">Ecommerce App</Navbar.Brand>
                 <Nav>
-                    <Nav.Link href="/user">User</Nav.Link>
-                    <Nav.Link href="/product">Product</Nav.Link>
-                    <Nav.Link href="/brand">Brand</Nav.Link>
-                    <Nav.Link href="/category">Category</Nav.Link>
+                    <Nav.Link href="/users">User</Nav.Link>
+                    <Nav.Link href="/products">Product</Nav.Link>
+                    <Nav.Link href="/brands">Brand</Nav.Link>
+                    <Nav.Link href="/categories">Category</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>
