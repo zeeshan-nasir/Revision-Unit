@@ -1,1 +1,1 @@
-Revision of the MERN Stack right from the basics.
+Projects made using MERN stack.
